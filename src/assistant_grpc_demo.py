@@ -20,13 +20,12 @@ import logging
 import aiy.assistant.grpc
 import aiy.audio
 import aiy.voicehat
-
+import subprocess
 
 logging.basicConfig(
     level=logging.INFO,
     format="[%(asctime)s] %(levelname)s:%(name)s:%(message)s"
 )
-
 
 
 def main():
@@ -39,7 +38,7 @@ def main():
     def on_button_press(_):
         assistant.start_converstation()
 
-    #button.on_press(callback=on_button_press)
+    # button.on_press(callback=on_button_press)
 
     with aiy.audio.get_recorder():
         while True:
@@ -55,7 +54,7 @@ def main():
                 print('Exception in speech request')
                 aiy.audio.say('Exception in speech request,proxy timeout')
                 continue
-            except :
+            except:
                 print('other Error')
                 continue
 
@@ -76,7 +75,10 @@ def main():
                     led.set_state(aiy.voicehat.LED.BLINK)
                     print('LED blink')
 
-                aiy.audio.say('I heard you said  '+text)
+                aiy.audio.say('I heard you said  ' + text)
+                if 'shut down' in text and 'computer' in text:
+                    aiy.audio.say('I will shutdown this computer,please stand by')
+                    # subprocess.call(['sudo', 'shutdown', '-h', 'now'])
 
             if audio is not None:
                 aiy.audio.play_audio(audio)
