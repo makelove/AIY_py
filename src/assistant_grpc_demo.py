@@ -49,12 +49,16 @@ def main():
     # button.on_press(callback=on_button_press)
 
     with aiy.audio.get_recorder():
+        aiy.audio.say('system is online')
         while True:
             status_ui.status('ready')
-            print('Press the button and speak')
+            speak = 'Press the button and speak'
+            print(speak)
+            aiy.audio.say(speak)
             button.wait_for_press()
             status_ui.status('listening')
             print('Listening...')
+            aiy.audio.say('ding')
 
             try:
                 text, audio = assistant.recognize()
@@ -99,4 +103,7 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except KeyboardInterrupt as e:
+        print(e)
