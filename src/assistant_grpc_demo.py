@@ -22,6 +22,8 @@ import os
 # os.environ['http_proxy'] = 'http://192.168.0.159:50493'
 # os.environ['https_proxy'] = 'http://192.168.0.159:50493'
 # alias xy="export http_proxy='http://192.168.0.159:50493';export https_proxy='http://192.168.0.159:50493'"
+#
+os.system('bash -c \'source ~/.bashrc\'')
 
 import logging
 
@@ -34,6 +36,8 @@ logging.basicConfig(
     level=logging.INFO,
     format="[%(asctime)s] %(levelname)s:%(name)s:%(message)s"
 )
+logging.info(os.environ['http_proxy'])
+logging.info(os.environ['https_proxy'])
 
 
 def main():
