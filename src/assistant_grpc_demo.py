@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # Copyright 2017 Google Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,6 +15,13 @@
 # limitations under the License.
 
 """A demo of the Google Assistant GRPC recognizer."""
+
+import os
+
+#不生效
+# os.environ['http_proxy'] = 'http://192.168.0.159:50493'
+# os.environ['https_proxy'] = 'http://192.168.0.159:50493'
+# alias xy="export http_proxy='http://192.168.0.159:50493';export https_proxy='http://192.168.0.159:50493'"
 
 import logging
 
@@ -75,10 +83,16 @@ def main():
                     led.set_state(aiy.voicehat.LED.BLINK)
                     print('LED blink')
 
-                aiy.audio.say('I heard you said  ' + text)
+
                 if 'shut down' in text and 'computer' in text:
                     aiy.audio.say('I will shutdown this computer,please stand by')
                     # subprocess.call(['sudo', 'shutdown', '-h', 'now'])
+                if 'reboot' in text and 'computer' in text:
+                    aiy.audio.say('I will shutdown this computer,please stand by')
+                    subprocess.call(['sudo', 'reboot'])
+                    break
+                else:
+                    aiy.audio.say('I heard you said  ' + text)
 
             if audio is not None:
                 aiy.audio.play_audio(audio)

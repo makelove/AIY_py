@@ -3,9 +3,12 @@ Description=voice recognizer
 After=network.target ntpdate.service
 
 [Service]
+Environment ="http_proxy='http://192.168.0.159:50493'"
+Environment ="https_proxy='http://192.168.0.159:50493'"
+#ExecStart=/bin/echo $http_proxy ${http_proxy} ${https_proxy}
 Environment=VIRTUAL_ENV=/home/pi/voice-recognizer-raspi/env
 Environment=PATH=/home/pi/voice-recognizer-raspi/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-ExecStart=/home/pi/voice-recognizer-raspi/env/bin/python3 -u src/main.py
+ExecStart=/home/pi/voice-recognizer-raspi/env/bin/python3 -u src/assistant_grpc_demo.py
 WorkingDirectory=/home/pi/voice-recognizer-raspi
 StandardOutput=inherit
 StandardError=inherit
