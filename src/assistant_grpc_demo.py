@@ -49,7 +49,7 @@ def main():
     # button.on_press(callback=on_button_press)
 
     with aiy.audio.get_recorder():
-        aiy.audio.say('system is online')
+        aiy.audio.say('system is online.')
         while True:
             status_ui.status('ready')
             speak = 'Press the button and speak'
@@ -58,7 +58,7 @@ def main():
             button.wait_for_press()
             status_ui.status('listening')
             print('Listening...')
-            aiy.audio.say('ding')
+            # aiy.audio.say('ding')
 
             try:
                 text, audio = assistant.recognize()
@@ -74,6 +74,7 @@ def main():
                 if text == 'goodbye':
                     status_ui.status('stopping')
                     print('Bye!')
+                    aiy.audio.say('Time to say goodbye,see you soon,my love')
                     break
                 print('You said "', text, '"')
 
@@ -93,10 +94,10 @@ def main():
                     # subprocess.call(['sudo', 'shutdown', '-h', 'now'])
                 if 'reboot' in text and 'computer' in text:
                     aiy.audio.say('I will shutdown this computer,please stand by')
-                    subprocess.call(['sudo', 'reboot'])
+                    # subprocess.call(['sudo', 'reboot'])
                     break
                 else:
-                    aiy.audio.say('I heard you said  ' + text)
+                    aiy.audio.say('you said  ' + text)
 
             if audio is not None:
                 aiy.audio.play_audio(audio)
