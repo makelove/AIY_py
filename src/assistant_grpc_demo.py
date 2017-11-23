@@ -39,6 +39,9 @@ logging.basicConfig(
 logging.info(os.environ['http_proxy'])
 logging.info(os.environ['https_proxy'])
 
+def play_music():
+    wav_path='../wav_files'
+    pass
 
 def main():
     status_ui = aiy.voicehat.get_status_ui()
@@ -63,6 +66,7 @@ def main():
             status_ui.status('listening')
             print('Listening...')
             # aiy.audio.say('ding')
+            aiy.audio.say('good morning  how are you')
 
             try:
                 text, audio = assistant.recognize()

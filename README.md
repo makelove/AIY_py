@@ -1,4 +1,5 @@
 This repository contains the APIs and demo apps for the AIYProjects. See
 https://aiyprojects.withgoogle.com.
 
-xxx
+我的经验
+- https://github.com/makelove/True_Artificial_Intelligence/tree/master/Google_AIY_voice_kit
