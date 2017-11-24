@@ -18,12 +18,12 @@
 
 import os
 
-#不生效
+# 不生效
 # os.environ['http_proxy'] = 'http://192.168.0.159:50493'
 # os.environ['https_proxy'] = 'http://192.168.0.159:50493'
 # alias xy="export http_proxy='http://192.168.0.159:50493';export https_proxy='http://192.168.0.159:50493'"
 #
-os.system('bash -c \'source ~/.bashrc\'')
+# os.system('bash -c \'source ~/.bashrc\'')#没用
 
 import logging
 
@@ -39,9 +39,26 @@ logging.basicConfig(
 logging.info(os.environ['http_proxy'])
 logging.info(os.environ['https_proxy'])
 
-def play_music():
-    wav_path='../wav_files'
-    pass
+
+def play_music(text):
+    wav_path = '../wav_files'
+    # text = 'play little apple'  # 测试
+    files = os.listdir(wav_path)
+    files2 = [x for x in files if x.endswith('.wav')]
+    ts = text.split()[1:]
+    d = {x: 0 for x in files2}
+    for x in ts:
+        for y in files2:
+            if x in y:
+                d[y] += 1
+    l = [(x, y) for x, y in d.items()]
+    l2 = sorted(l, key=lambda x: x[1])
+    if l2[-1][1] == 0:
+        return
+    song_file = l2[-1][0]
+    sp = os.path.join(wav_path, song_file)
+    aiy.audio.play_wave(sp)
+
 
 def main():
     status_ui = aiy.voicehat.get_status_ui()
@@ -66,8 +83,9 @@ def main():
             status_ui.status('listening')
             print('Listening...')
             # aiy.audio.say('ding')
-            aiy.audio.say('good morning  how are you')
+            # aiy.audio.say('good morning  how are you') #不行
 
+            text = ''
             try:
                 text, audio = assistant.recognize()
             except aiy._apis._speech.Error as e:
@@ -79,6 +97,11 @@ def main():
                 continue
 
             if text is not None:
+
+                if text.startswith('play'):
+                    play_music(text)
+                    continue
+
                 if text == 'goodbye':
                     status_ui.status('stopping')
                     print('Bye!')
@@ -95,7 +118,6 @@ def main():
                 elif 'blink' in text:
                     led.set_state(aiy.voicehat.LED.BLINK)
                     print('LED blink')
-
 
                 if 'shut down' in text and 'computer' in text:
                     aiy.audio.say('I will shutdown this computer,please stand by')
