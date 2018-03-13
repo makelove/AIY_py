@@ -19,8 +19,13 @@ https://aiyprojects.withgoogle.com.
         - 下载蓝灯[蓝灯最新版下载地址](https://github.com/getlantern/forum/issues/833) 
             - Windows 版本(要求XP SP3以上)
         - 在你的Windows电脑上安装
+            - 找到你的局域网IP：192.168.1.xxx
             - 防火墙，开通网络端口50493，50497
             - 找到settings.yaml，修改
+                - Windows XP 
+                    - C:\Documents and Settings<用户名>\Application Data\Lantern\settings.yaml
+                - Windows 7 - Windows 10 
+                    -C:\Users<用户名>\AppData\Roaming\Lantern\settings.yaml
                 - 把addr: 127.0.0.1:50493改为 addr: 192.168.1.xxx:50493
                 - 把socksAddr: 127.0.0.1:50497改为socksAddr: 192.168.1.xxx:50497
             - 启动蓝灯
