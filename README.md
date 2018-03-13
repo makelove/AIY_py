@@ -9,6 +9,8 @@ https://aiyprojects.withgoogle.com.
         - 在树莓派上安装，Arm版蓝灯https://github.com/EasyPi/docker-lantern-arm/releases/
             -  下载 lantern_4.4.0-1_armhf.deb
             - sudo dpkg -i lantern_4.4.0-1_armhf.deb
+            - sudo systemctl start lantern
+            - sudo systemctl enable lantern
             - export http_proxy='http://127.0.0.1:50493';export https_proxy='http://127.0.0.1:50493'
             - 测试 curl https://www.google.com/
             - 运行你的AIY python代码
