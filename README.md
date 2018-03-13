@@ -11,8 +11,9 @@ https://aiyprojects.withgoogle.com.
             - sudo dpkg -i lantern_4.4.0-1_armhf.deb
             - sudo systemctl start lantern
             - sudo systemctl enable lantern
+            - ps aux|grep lantern #是否成功启动
             - export http_proxy='http://127.0.0.1:50493';export https_proxy='http://127.0.0.1:50493'
-            - 测试 curl https://www.google.com/
+            - 测试 curl https://www.google.com/  #有可能lantern被封
             - 运行你的AIY python代码
     - 方法2：
         - 下载蓝灯[蓝灯最新版下载地址](https://github.com/getlantern/forum/issues/833) 
