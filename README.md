@@ -33,4 +33,14 @@ https://aiyprojects.withgoogle.com.
             - export http_proxy='http://192.168.1.xxx:50493';export https_proxy='http://192.168.1.xxx:50493'
             - 测试 curl https://www.google.com/
             - 运行你的AIY python代码
-    
+```bash
+#nano .bashrc
+
+#proxy
+export http_proxy='http://192.168.0.159:50493'
+export https_proxy='https://192.168.0.159:50493'
+export no_proxy=localhost,127.0.0.0/8
+```            
+-  方法3：
+    - 自建shadowsocks服务器
+         - https://github.com/VincentChanX/shadowsocks-over-websocket
