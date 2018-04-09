@@ -44,3 +44,6 @@ export no_proxy=localhost,127.0.0.0/8
 -  方法3：
     - 自建shadowsocks服务器
          - https://github.com/VincentChanX/shadowsocks-over-websocket
+    - 安装
+        - sudo apt install nodejs-legacy
+        - git clone https://github.com/VincentChanX/shadowsocks-over-websocket.git
