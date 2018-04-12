@@ -52,4 +52,8 @@ export no_proxy=localhost,127.0.0.0/8
         - git clone https://github.com/VincentChanX/shadowsocks-over-websocket.git
         - cd shadowsocks-over-websocket/
         - npm install 
-        - node xxxxxx
+        - 建立你的appxxxx.herokuapp.com
+        - 配置密钥 keyyyy
+        - node local.js -s  xxxx.herokuapp.com -l 1080 -m aes-256-cfb -k keyyyy -p 80
+        - sudo polipo socksParentProxy=localhost:1080 proxyAddress=0.0.0.0 proxyPort=50493
+        
